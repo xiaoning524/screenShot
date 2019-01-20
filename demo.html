@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body id="test">
+    <a id="button">点击截图</a>
+
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="bluebird.js"></script>
+    <script src="html2canvas.min.js"></script>
+    <script src="canvas2image.js"></script>
+    <script>
+      $("#button").click(function(){
+        let test = $("#test").get(0);  //将jQuery对象转换为dom对象
+        
+        html2canvas(test).then(function(canvas) {
+            // 转成图片,可以在网页中显示
+            //let img = Canvas2Image.convertToImage(canvas, canvasWidth, canvasHeight);
+            // 保存图片
+            let type = 'PNG'; //图片类型
+            let w = canvas.width; //图片宽度
+            let h = canvas.height; //图片高度
+            let f = 'demo'; //图片文件名
+            // 调用Canvas2Image插件
+            Canvas2Image.saveAsImage(canvas, w, h, type, f);
+        });   
+    })
+    </script>
+    <script src="babel-browser.js"></script>
+</body>
+</html>
